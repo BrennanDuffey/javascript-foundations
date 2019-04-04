@@ -52,6 +52,11 @@ describe('StreetRat default properties', () => {
     const streetRat = new StreetRat('Jeff');
     assert.equal(streetRat.isDiamondInTheRough, true);
   });
+
+  it('Should have peasant status', () => {
+    const streetRat = new StreetRat('Travis');
+    assert.equal(streetRat.status, 'peasant')
+  })
 });
 
 describe('Sorcerer default properties', () => {
@@ -74,6 +79,76 @@ describe('Sorcerer default properties', () => {
     const sorcerer = new Sorcerer('Louisa');
     assert.equal(sorcerer.isDiamondInTheRough, false)
   });
-
-  it('Should have ')
 });
+
+describe('Methods test block', () => {
+
+  it('Genie should be able to grant wishes', () => {
+    const genie = new Genie('Pam');
+    const streetRat = new StreetRat('Brittany');
+    assert.equal(streetRat.status, 'peasant');
+
+    genie.grantWish(streetRat);
+
+    assert.equal(streetRat.status, 'prince');
+  });
+
+  it('Sorcerer should be able to threaten', () => {
+    const sorcerer = new Sorcerer('Louisa');
+    const streetRat = new StreetRat('Brittany');
+
+    sorcerer.threaten(streetRat);
+    assert.eqaul(streetRat.isSafe, false);
+
+  });
+
+  it('Second wish should save StreetRat', () => {
+    const streetRat = new StreetRat('Jeff');
+    const sorcerer = new Sorcerer('Ramiro');
+    const genie = new Genie('Leta');
+
+    genie.grantWish(streetRat);
+    sorcerer.threaten(streetRat);
+    assert.eqaul(streetRat.isSafe, false);
+    genie.grantWish(streetRat);
+    assert.equal(streetRat.isSafe, true);
+
+  });
+
+  it('Sorcerer should be able to make wish', () => {
+    const sorcerer = new Sorcerer('Lauren');
+    const genie = new Genie('Brennan');
+
+
+    genie.grantWish(sorcerer);
+    assert.equal(sorcerer.isAllPowerful, true);
+
+
+  });
+
+  it('', () => {
+    const sorcerer = new Sorcerer('Lauren');
+    const genie = new Genie('Brennan');
+
+
+    genie.grantWish(sorcerer);
+    assert.equal(sorcerer.isAllPowerful, true);
+    genie.grantWish(sorcerer);
+    assert.equal(sorcerer.isGenie, true)
+
+  });
+
+  it('', () => {
+
+  });
+
+  it('', () => {
+
+  });
+
+
+});
+
+//potentially el. genie and extend SR from Soc.
+
+
