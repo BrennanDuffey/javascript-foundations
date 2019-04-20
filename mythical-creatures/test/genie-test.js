@@ -1,154 +1,166 @@
-const assert = require('chai').assert;
-const Genie = require('../exercises/genie');
-const StreetRat = require('../exercises/streetRat');
-const Sorcerer = require('../exercises/sorcerer');
+import chai from 'chai';
+import mocha from 'mocha';
+const assert = require('chai').assert
 
 
+describe('Genie', () => {
 
-describe('Genie default properties', () => {
-
-  it('Should be a function', () => {
+  it('should be a function', () => {
     assert.isFunction(Genie);
   });
 
-  it('Should instantiate Genie', () => {
-    const genie = new Genie;
+  it('should instantiate Genie', () => {
+    const genie = new Genie();
     assert.isObject(genie);
   });
 
-  it('Should have a name', () => {
-    const genie = new Genie('Robbie');
-    assert.equal(genie.name, 'Robbie');
+  it('should have a name', () => {
+    const genie = new Genie();
+    assert.equal(genie.name, 'Bobo');
   });
 
-  it('Should start off enslaved', () => {
-    const genie = new Genie('Robbie');
+  it('should start in the Cave of Wonders', () => {
+    const genie = new Genie();
+    assert.equal(gene.location, 'Cave of Wonders');
+  });
+
+  it('should have the capacity to take in masters', () => {
+    const genie = new Genie();
+    assert.equal(genie.masters, []);
+  });
+
+  it('should not be free', () => {
+    const genie = new Genie();
     assert.equal(genie.isFree, false);
   });
 
-  it('Should have a color blue', () => {
-    const genie = new Genie('Khalid');
-    assert.equal(genie.color, 'Blue');
-  });
 });
 
-describe('StreetRat default properties', () => {
+describe('Street Rat', () => {
 
-  it('Should be a function', () => {
+  it('should be a function', () => {
     assert.isFunction(StreetRat);
   });
 
-  it('Should instantiate StreetRat', () => {
-    const streetRat = new StreetRat('Jeff');
+  it('should instantiate Street Rat', () => {
+    const streetRat = new StreetRat();
     assert.isObject(streetRat);
   });
 
-  it('Should have a name', () => {
-    const streetRat = new StreetRat('Jeff');
+  it('should have a name', () => {
+    const streetRat = new StreetRat();
     assert.equal(streetRat.name, 'Jeff');
   });
 
-  it('Should be a diamond in the rough', () => {
-    const streetRat = new StreetRat('Jeff');
-    assert.equal(streetRat.isDiamondInTheRough, true);
+  it('should start in the bazaar', () => {
+    const streetRat = new StreetRat();
+    assert.equal(streetRat.location, 'bazaar');
   });
 
-  it('Should have peasant status', () => {
-    const streetRat = new StreetRat('Travis');
-    assert.equal(streetRat.status, 'peasant')
-  })
-});
-
-describe('Sorcerer default properties', () => {
-
-  it('Should be a function', () => {
-    assert.isFunction(Sorcerer);
+  it('should be able to start to a different location', () => {
+    const streetRat = new StreetRat('palace');
+    assert.equal(streetRat.location, 'palace')
   });
 
-  it('Should instantiate Sorcerer', () => {
-    const sorcerer = new Sorcerer('Louisa');
-    assert.equal(sorcerer);
+  it('should start with no awesomeness', () => {
+    const streetRat = new StreetRat();
+    assert.equal(streetRat.awesome, 0);
   });
-
-  it('Should have a name', () => {
-    const sorcerer = new Sorcerer('Lousia');
-    assert.equal(sorcerer.name, 'Louisa');
-  });
-
-  it('Should not be a diamond in the rough', () => {
-    const sorcerer = new Sorcerer('Louisa');
-    assert.equal(sorcerer.isDiamondInTheRough, false)
-  });
-});
-
-describe('Methods test block', () => {
-
-  it('Genie should be able to grant wishes', () => {
-    const genie = new Genie('Pam');
-    const streetRat = new StreetRat('Brittany');
-    assert.equal(streetRat.status, 'peasant');
-
-    genie.grantWish(streetRat);
-
-    assert.equal(streetRat.status, 'prince');
-  });
-
-  it('Sorcerer should be able to threaten', () => {
-    const sorcerer = new Sorcerer('Louisa');
-    const streetRat = new StreetRat('Brittany');
-
-    sorcerer.threaten(streetRat);
-    assert.eqaul(streetRat.isSafe, false);
-
-  });
-
-  it('Second wish should save StreetRat', () => {
-    const streetRat = new StreetRat('Jeff');
-    const sorcerer = new Sorcerer('Ramiro');
-    const genie = new Genie('Leta');
-
-    genie.grantWish(streetRat);
-    sorcerer.threaten(streetRat);
-    assert.eqaul(streetRat.isSafe, false);
-    genie.grantWish(streetRat);
-    assert.equal(streetRat.isSafe, true);
-
-  });
-
-  it('Sorcerer should be able to make wish', () => {
-    const sorcerer = new Sorcerer('Lauren');
-    const genie = new Genie('Brennan');
-
-
-    genie.grantWish(sorcerer);
-    assert.equal(sorcerer.isAllPowerful, true);
-
-
-  });
-
-  it('', () => {
-    const sorcerer = new Sorcerer('Lauren');
-    const genie = new Genie('Brennan');
-
-
-    genie.grantWish(sorcerer);
-    assert.equal(sorcerer.isAllPowerful, true);
-    genie.grantWish(sorcerer);
-    assert.equal(sorcerer.isGenie, true)
-
-  });
-
-  it('', () => {
-
-  });
-
-  it('', () => {
-
-  });
-
 
 });
 
-//potentially el. genie and extend SR from Soc.
+describe('Genie & Street Rat Methods', () => {
+
+  it('StreetRat should be able to move', () => {
+    const streetRat = new StreetRat();
+    assert.equal(streetRat.lcation, 'bazaar');
+    streetRat.move('Cave of Wonders');
+    assert.equal(streetRat.location, 'Cave of Wonders');
+  });
+
+  it('Genie can accept a new master', () => {
+    const streetRat = new StreetRat();
+    const genie = new Genie();
+    streetRat.move('Cave of Wonders');
+    assert.equal(genie.masters, []);
+    genie.acceptMaster(streetRat);
+    assert.deepEqual(genie.masters, [streetRat]);
+  });
+
+  it('Genie can accept multiple masters ', () => {
+    const streetRat1 = new StreetRat();
+    const streetRat2 = new StreetRat();
+    const genie = new Genie();
+    streetRat1.move('Cave of Wonders');
+    genie.acceptMaster(streetRat1);
+    streetRat2.move('Cave of Wonders');
+    genie.acceptMaster(streetRat2);
+    assert.deepEqual(genie.masters, [streetRat1, streetRat2]);
+  });
+
+  it('Genie should have a current master', () => {
+    const streetRat1 = new StreetRat();
+    const streetRat2 = new StreetRat();
+    const genie = new Genie();
+    streetRat1.move('Cave of Wonders');
+    genie.acceptMaster(streetRat1);
+    streetRat2.move('Cave of Wonders');
+    genie.acceptMaster(streetRat2);
+    assert.equal(genie.currentMaster, streetRat1);
+  });
+
+  //switchmasters test block
+
+  it('Current Master should be able to make wishes', () => {
+    const streetRat1 = new StreetRat();
+    const genie = new Genie();
+    streetRat1.move('Cave of Wonders');
+    genie.acceptMaster(streetRat1);
+    genie.grantWish(25);
+    genie.grantWish(50);
+    genie.grantWish(10);
+    assert.equal(streetRat1.awesome, 85);
+  });
+
+  it('Genie can only grant three wishes per Current Master', () => {
+    const streetRat1 = new StreetRat();
+    const genie = new Genie();
+    streetRat1.move('Cave of Wonders');
+    genie.acceptMaster(streetRat1);
+    genie.grantWish(25);
+    genie.grantWish(50);
+    genie.grantWish(10);
+    genie.grantWish(9001);
+    assert.equal(streetRat1.awesome, 85);
+  });
 
 
+  it('Genie is free', () => {
+    const streetRat1 = new StreetRat();
+    const streetRat2 = new StreetRat();
+    const streetRat3 = new StreetRat();
+    const genie = new Genie();
+    streetRat1.move('Cave of Wonders');
+    streetRat2.move('Cave of Wonders');
+    streetRat3.move('Cave of Wonders');
+    genie.acceptMaster(streetRat1);
+    genie.acceptMaster(streetRat2);
+    genie.acceptMaster(streetRat3);
+    genie.grantWish(25);
+    genie.grantWish(50);
+    genie.grantWish(10);
+    genie.switchMasters(streetRat2);
+    genie.grantWish(25);
+    genie.grantWish(50);
+    genie.grantWish(10);
+    genie.switchMasters(streetRat3);
+    genie.grantWish(25);
+    genie.grantWish(50);
+    genie.grantWish(10);
+    genie.checkMasters();
+    assert.deepEqual(genie.masters, []);
+    assert.equal(genie.isFree, true);
+  });
+//refactoring: remove locations, have accept masters have a parameter of object(s), clean up last function
+
+});
